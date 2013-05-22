@@ -64,6 +64,43 @@ var calculate = {
         }
 
         return false ;
+    } ,
+
+    meetsMinimumSize : function(element)
+    {
+        var width  = $(element).offsetWidth ;
+        var height = $(element).offsetHeight ;
+        switch(options.dimentionTrigger)
+        {
+            case "and" :
+            {
+                if(width >= options.minDimentions.width && height >= options.minDimentions.height)
+                {
+                    return true ;
+                }
+                else
+                {
+                    return false ;
+                }
+            }
+            break ;
+            case "or" :
+            {
+                if(width >= options.minDimentions.width || height >= options.minDimentions.height)
+                {
+                    return true ;
+                }
+                else
+                {
+                    return false ;
+                }
+            }
+            break ;
+            default :
+            {
+                alert("Configuration error on the following value : dimentionTrigger") ;
+            }
+        }
     }
 
-}
+} ;

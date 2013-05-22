@@ -24,6 +24,15 @@ var options = {
         height  : 10
     } ,
 
+    /*
+     * dimentionTrigger is used together with the minDimentions configuration.
+     * This value is either "and" of "or"
+     * "and" setting enables u to check the elements that meet both minimum height and width requirements
+     * "or" setting enables u to check the elements that meet either the height or width requirement
+     */
+     
+    dimentionTrigger : "and" ,
+            
     /*Elements that should be removed from the site before the check starts */
     removeableIds : Array("cookie") ,
 
