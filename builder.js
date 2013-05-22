@@ -88,6 +88,9 @@ var builder = {
 
 builder.initialize();
 /*
+ 
+ If ran locally below code needs to be executed through console
+ 
 p = new Date()
 myCheck = document.createElement("script") ;
 myCheck.src = "http://localhost/design_new/builder.js?busted=" + p.getTime() ;
