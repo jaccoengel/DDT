@@ -68,8 +68,8 @@ var calculate = {
 
     meetsMinimumSize : function(element)
     {
-        var width  = $(element).offsetWidth ;
-        var height = $(element).offsetHeight ;
+        var width  = $(element).width() ;
+        var height = $(element).height() ;
         switch(options.dimentionTrigger)
         {
             case "and" :

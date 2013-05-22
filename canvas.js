@@ -66,7 +66,6 @@ var canvas = {
         key = key[1] ;
 
         nodeObject = (errorType === "h") ?check.nodeObjectTop : check.nodeObjectLeft ;
-        
         for (obj in nodeObject[key])
         {
             if(typeof(nodeObject[key][obj]) !== "function")
