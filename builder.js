@@ -11,7 +11,7 @@ var builder = {
 
     initialize : function(rootPath)
     {
-        this.rootPath = rootPath
+        this.rootPath = rootPath ;
         p = new Date();
         if($ === undefined && jQuery === undefined )
         {
@@ -21,15 +21,15 @@ var builder = {
             document.getElementsByTagName("head")[0].appendChild(myJquery)
             myJquery.addEventListener("load", function(){
                 builder.loadScripts();
-            }, false)
+            }, false) ;
         }
         else
         {
             if(jQuery !== undefined)
             {
-                $ = jQuery
+                $ = jQuery ;
             }
-            builder.loadScripts();
+            builder.loadScripts() ;
         }
     } ,
 
@@ -52,24 +52,24 @@ var builder = {
 
         for (script in scriptArr)
         {
-            loadingScripts = loadingScripts + 1
+            loadingScripts = loadingScripts + 1 ;
 
             if(typeof(scriptArr[script]) !== "function")
             {
                 $.getScript(this.rootPath + scriptArr[script] + "?busted=" + p.getTime() ,
                     function()
                     {
-                        loadingScripts = loadingScripts - 1;
+                        loadingScripts = loadingScripts - 1 ;
                     }
                 )
             }
         }
 
         loadInterval = setInterval(function(){
-            if(loadingScripts == 0)
+            if(loadingScripts === 0)
             {
-                clearInterval(loadInterval)
-                builder.startCheck();
+                clearInterval(loadInterval) ;
+                builder.startCheck() ;
             }
         } , 200)
     },
@@ -82,7 +82,7 @@ var builder = {
 
     startCheck : function()
     {
-        options.setLeft();
+        options.setLeft() ;
         canvas.displayErrors() ;
         check.setup() ;
     }
@@ -92,8 +92,8 @@ var builder = {
 /*
  * builder takes rootpath argument
  */
-var rootPath = "http://localhost/"
-builder.initialize(rootPath);
+var rootPath = "http://localhost/" ;
+builder.initialize(rootPath) ;
 /*
  
  If ran locally below code needs to be executed through console

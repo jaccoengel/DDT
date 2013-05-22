@@ -5,7 +5,7 @@
 
 Array.prototype.minimum = function()
 {
-    var min = this[0]
+    var min = this[0];
     for(el in this)
     {
         if(this[el] < min)
@@ -14,7 +14,7 @@ Array.prototype.minimum = function()
         }
     }
     return min;
-}
+};
 
 /*
  * Extends array object with a function to retrieve the maximum value from an array
@@ -22,7 +22,7 @@ Array.prototype.minimum = function()
  **/
 Array.prototype.maximum = function()
 {
-    var max = this[0]
+    var max = this[0];
     for(el in this)
     {
         if(this[el] > max)
@@ -30,8 +30,8 @@ Array.prototype.maximum = function()
             max = this[el] ;
         }
     }
-    return max;
-}
+    return max ;
+};
 
 /*
  * Extends array object with a function to check if the array consists of the same values
@@ -39,13 +39,13 @@ Array.prototype.maximum = function()
  **/
 Array.prototype.oneValue = function()
 {
-    var max = this[0]
+    var max = this[0];
     for(el in this)
     {
-        if(this[el] != max && !isNaN(this[el]))
+        if(this[el] !== max && !isNaN(this[el]))
         {
             return false;
         }
     }
     return true;
-}
+};

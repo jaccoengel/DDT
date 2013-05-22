@@ -6,7 +6,7 @@ var calculate = {
      **/
 
     left : function(source){
-        offset = $(source).offset().left
+        offset = $(source).offset().left ;
         return offset ;
     } ,
 
@@ -16,8 +16,8 @@ var calculate = {
      **/
 
     top : function(source){
-        offset = $(source).offset().top
-        return offset
+        offset = $(source).offset().top ;
+        return offset ;
     } ,
 
     /*
@@ -38,7 +38,7 @@ var calculate = {
             }
         }
 
-        return offsets
+        return offsets ;
     },
 
     /*

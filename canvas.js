@@ -26,7 +26,7 @@ var canvas = {
             })
             .attr({
                 id          : "errorBox"
-            })
+            }) ;
 
         $("<div></div>")
             .appendTo($("#" + check.global.errorBox))
@@ -46,9 +46,9 @@ var canvas = {
             .click(function()
             {
                 canvas.lock = false;
-                $("#errorLock").html("Unlocked")
+                $("#errorLock").html("Unlocked") ;
                 canvas.displayAllErrors();
-            })
+            }) ;
 
     } ,
 
@@ -61,15 +61,15 @@ var canvas = {
 
     showElements : function(key)
     {
-        key = key.split("_");
+        key = key.split("_") ;
         errorType = key[0] ;
-        key = key[1]
+        key = key[1] ;
 
-        nodeObject = (errorType == "h") ?check.nodeObjectTop : check.nodeObjectLeft
+        nodeObject = (errorType === "h") ?check.nodeObjectTop : check.nodeObjectLeft ;
         
         for (obj in nodeObject[key])
         {
-            if(typeof(nodeObject[key][obj]) != "function")
+            if(typeof(nodeObject[key][obj]) !== "function")
             {
                 $("<div></div>")
                     .appendTo($("#" + check.global.errorBox))
@@ -84,7 +84,7 @@ var canvas = {
                         border          : "3px solid blue" ,
                         opacity         : 0.45
                     })
-                    .addClass("relatedElement")
+                    .addClass("relatedElement") ;
             }
         }
     } ,
@@ -98,11 +98,11 @@ var canvas = {
         $("#errorBox div")
             .css({
                 display : ""
-            })
+            }) ;
         $(".relatedElement")
             .css({
                 display : "none"
-            })
+            }) ;
     } ,
 
     /*
@@ -152,17 +152,17 @@ var canvas = {
                     $("#errorBox div[class!=" + errorObj.key + "]")
                         .css({
                             display : "none"
-                        })
+                        }) ;
                     $("#errorBox div[id=errorLock]")
                         .css({
                             display : ""
-                        })
-                    canvas.showElements(errorObj.key);
+                        }) ;
+                    canvas.showElements(errorObj.key) ;
                 }
             )
             .mouseout(
                 function(){
-                    if(canvas.lock == false)
+                    if(canvas.lock === false)
                     {
                         canvas.displayAllErrors();
                     }
@@ -171,9 +171,9 @@ var canvas = {
             .click(
                 function()
                 {
-                    canvas.lock = true
+                    canvas.lock = true ;
                     $("#errorLock")
-                        .html("Locked , click here to unlock")
+                        .html("Locked , click here to unlock") ;
                 }
             )
     }

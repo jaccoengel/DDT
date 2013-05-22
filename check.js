@@ -17,8 +17,8 @@ var check = {
     define : function(name , value)
     {
         tmpObj = {}
-        tmpObj[name] = value
-        $.extend(check.global , tmpObj)
+        tmpObj[name] = value ;
+        $.extend(check.global , tmpObj) ;
     } ,
 
     /*
@@ -39,13 +39,13 @@ var check = {
 
         for(var i = 0;i<target.childNodes.length;i++)
         {
-            if(target.childNodes[i].nodeType != 3)
+            if(target.childNodes[i].nodeType !== 3)
             {
                 nodeList[nodeList.length] = target.childNodes[i] ;
 
                 if(target.childNodes[i].childNodes.length > 0)
                 {
-                    this.getAllNodes(target.childNodes[i] , nodeList)
+                    this.getAllNodes(target.childNodes[i] , nodeList) ;
                 }
             }
         }
@@ -63,9 +63,9 @@ var check = {
         idArray = options.removeableIds ;
         for(id in idArray)
         {
-            if(document.getElementById(idArray[id]) != null)
+            if(document.getElementById(idArray[id]) !== null)
             {
-                document.getElementById(idArray[id]).parentNode.removeChild(document.getElementById(idArray[id]))
+                document.getElementById(idArray[id]).parentNode.removeChild(document.getElementById(idArray[id])) ;
             }
         }
     } ,
@@ -77,13 +77,13 @@ var check = {
 
     fillLeftArray : function(nodes)
     {
-        offsetLeftArr = Array()
-        nodeObject = Array()
+        offsetLeftArr = Array() ;
+        nodeObject = Array() ;
         for(var i = 0; i < nodes.length;i++)
         {
-            offsetLeftArr[offsetLeftArr.length] = calculate.left(nodes[i])
+            offsetLeftArr[offsetLeftArr.length] = calculate.left(nodes[i]) ;
         }
-        offsetValues = calculate.getOffsetValues(offsetLeftArr).sort();
+        offsetValues = calculate.getOffsetValues(offsetLeftArr).sort() ;
 
         for(var key = 0 ; key < offsetValues.length ; key++)
         {
@@ -95,12 +95,12 @@ var check = {
                 left = calculate.left(nodes[j]);
                 if(start < left &&  end > left)
                 {
-                    if(typeof(nodeObject[key]) != "object" )
+                    if(typeof(nodeObject[key]) !== "object")
                     {
                         nodeObject[key] = Array() ;
                     }
 
-                    if(typeof(nodes[j]) != "function" )
+                    if(typeof(nodes[j]) !== "function")
                     {
                         nodeObject[key][nodeObject[key].length] = nodes[j] ;
                     }
@@ -117,11 +117,11 @@ var check = {
 
     fillTopArray : function(nodes)
     {
-        offsetTopArr = Array()
-        nodeObject = Array()
+        offsetTopArr = Array() ;
+        nodeObject = Array() ;
         for(var i = 0; i < nodes.length;i++)
         {
-            offsetTopArr[offsetTopArr.length] = calculate.top(nodes[i])
+            offsetTopArr[offsetTopArr.length] = calculate.top(nodes[i]) ;
         }
         offsetValues = calculate.getOffsetValues(offsetTopArr).sort();
         for(var key = 0 ; key < offsetValues.length ; key++)
@@ -134,12 +134,12 @@ var check = {
                 topValue = calculate.top(nodes[j]);
                 if(start < topValue &&  end > topValue)
                 {
-                    if(typeof(nodeObject[key]) != "object" )
+                    if(typeof(nodeObject[key]) !== "object")
                     {
                         nodeObject[key] = Array() ;
                     }
 
-                    if(typeof(nodes[j]) != "function" )
+                    if(typeof(nodes[j]) !== "function")
                     {
                         nodeObject[key][nodeObject[key].length] = nodes[j] ;
                     }
@@ -157,13 +157,13 @@ var check = {
 
     setup : function()
     {
-        this.removeElements();
-        nodes = check.getAllNodes()
+        this.removeElements() ;
+        nodes = check.getAllNodes() ;
 
-        nodeObjectLeft = check.fillLeftArray(nodes)
+        nodeObjectLeft = check.fillLeftArray(nodes) ;
         this.checkLeft(nodeObjectLeft) ;
 
-        nodeObjectTop = check.fillTopArray(nodes)
+        nodeObjectTop = check.fillTopArray(nodes) ;
         this.checkTop(nodeObjectTop) ;
     } ,
 
@@ -174,7 +174,7 @@ var check = {
 
     checkLeft : function(nodeObject)
     {
-        if(this.nodeObjectLeft == null)
+        if(this.nodeObjectLeft === null)
         {
             this.nodeObjectLeft = nodeObject ;
         }
@@ -184,9 +184,9 @@ var check = {
             objectCount = 0 ;
             for (obj in nodeObject[objGroup])
             {
-                if(typeof(nodeObject[objGroup][obj]) != "function")
+                if(typeof(nodeObject[objGroup][obj]) !== "function")
                 {
-                    objectCount = objectCount + 1
+                    objectCount = objectCount + 1 ;
                 }
             }
 
@@ -195,9 +195,9 @@ var check = {
                 offsetLeftArray = Array() ;
                 for (obj in nodeObject[objGroup])
                 {
-                    if(typeof(nodeObject[objGroup][obj]) != "function")
+                    if(typeof(nodeObject[objGroup][obj]) !== "function")
                     {
-                        offsetLeftArray[offsetLeftArray.length] = calculate.left(nodeObject[objGroup][obj])
+                        offsetLeftArray[offsetLeftArray.length] = calculate.left(nodeObject[objGroup][obj]) ;
                     }
                 }
                 
@@ -210,8 +210,8 @@ var check = {
                         "height" : "100%" ,
                         "key" : "l_" + objGroup ,
                         "type" : "vertical"
-                    }
-                    canvas.createError(errorObj)
+                    } ;
+                    canvas.createError(errorObj) ;
                 }
                 else
                 {
@@ -223,8 +223,8 @@ var check = {
                         "height" : "100%" ,
                         "key" : objGroup ,
                         "type" : "vertical"
-                    }
-                    canvas.createError(errorObj , "Green")
+                    } ;
+                    canvas.createError(errorObj , "Green") ;
                 }
             }
         }
@@ -237,7 +237,7 @@ var check = {
 
     checkTop : function(nodeObject)
     {
-        if(this.nodeObjectTop == null)
+        if(this.nodeObjectTop === null)
         {
             this.nodeObjectTop = nodeObject ;
         }
@@ -247,9 +247,9 @@ var check = {
             objectCount = 0 ;
             for (obj in nodeObject[objGroup])
             {
-                if(typeof(nodeObject[objGroup][obj]) != "function")
+                if(typeof(nodeObject[objGroup][obj]) !== "function")
                 {
-                    objectCount = objectCount + 1
+                    objectCount = objectCount + 1 ;
                 }
             }
 
@@ -258,9 +258,9 @@ var check = {
                 offsetTopArray = Array() ;
                 for (obj in nodeObject[objGroup])
                 {
-                    if(typeof(nodeObject[objGroup][obj]) != "function")
+                    if(typeof(nodeObject[objGroup][obj]) !== "function")
                     {
-                        offsetTopArray[offsetTopArray.length] = calculate.top(nodeObject[objGroup][obj])
+                        offsetTopArray[offsetTopArray.length] = calculate.top(nodeObject[objGroup][obj]) ;
                     }
                 }
 
@@ -272,8 +272,8 @@ var check = {
                         "width" : "100%" ,
                         "height" : "2px" ,
                         "key" : "h_" + objGroup
-                    }
-                    canvas.createError(errorObj)
+                    } ;
+                    canvas.createError(errorObj) ;
                 }
                 else
                 {
@@ -285,7 +285,7 @@ var check = {
                         "height" : "2px" ,
                         "key" : objGroup
                     }
-                    canvas.createError(errorObj , "Green")
+                    canvas.createError(errorObj , "Green") ;
                 }
             }
         }
