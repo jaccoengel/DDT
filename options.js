@@ -28,6 +28,12 @@ var options = {
     removeableIds : Array("cookie") ,
 
     /*
+     * Toggle for diplaying only errors or displaying all checks
+     */
+
+    errorsOnly : false ,
+
+    /*
      * Setter for minOffsetLeft
      **/
     setLeft : function()
