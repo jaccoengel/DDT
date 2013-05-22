@@ -25,7 +25,7 @@ var options = {
     } ,
 
     /*Elements that should be removed from the site before the check starts */
-    removeableIds : Array("coockie") ,
+    removeableIds : Array("cookie") ,
 
     /*
      * Setter for minOffsetLeft

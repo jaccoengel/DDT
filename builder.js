@@ -7,8 +7,11 @@ var builder = {
      * Then load the rest of the scripts
      **/
 
-    initialize : function()
+    rootPath : false ,
+
+    initialize : function(rootPath)
     {
+        this.rootPath = rootPath
         p = new Date();
         if($ === undefined && jQuery === undefined )
         {
@@ -38,11 +41,11 @@ var builder = {
     loadScripts : function()
     {
         var scriptArr = Array(
-            "http://localhost/design_new/check.js" ,
-            "http://localhost/design_new/options.js" ,
-            "http://localhost/design_new/calculate.js" ,
-            "http://localhost/design_new/prototyping.js" ,
-            "http://localhost/design_new/canvas.js"
+            "check.js" ,
+            "options.js" ,
+            "calculate.js" ,
+            "prototyping.js" ,
+            "canvas.js"
         );
 
         var loadingScripts = 0 ;
@@ -51,9 +54,9 @@ var builder = {
         {
             loadingScripts = loadingScripts + 1
 
-            if(typeof(scriptArr[script]) != "function")
+            if(typeof(scriptArr[script]) !== "function")
             {
-                $.getScript(scriptArr[script] + "?busted=" + p.getTime() ,
+                $.getScript(this.rootPath + scriptArr[script] + "?busted=" + p.getTime() ,
                     function()
                     {
                         loadingScripts = loadingScripts - 1;
@@ -86,14 +89,18 @@ var builder = {
 }
 
 
-builder.initialize();
+/*
+ * builder takes rootpath argument
+ */
+var rootPath = "http://localhost/"
+builder.initialize(rootPath);
 /*
  
  If ran locally below code needs to be executed through console
  
 p = new Date()
 myCheck = document.createElement("script") ;
-myCheck.src = "http://localhost/design_new/builder.js?busted=" + p.getTime() ;
+myCheck.src = "http://localhost/builder.js?busted=" + p.getTime() ;
 myCheck.type = "text/javascript" ;
 document.getElementsByTagName("head")[0].appendChild(myCheck)
 */
