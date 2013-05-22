@@ -16,7 +16,7 @@ var check = {
 
     define : function(name , value)
     {
-        tmpObj = {}
+        tmpObj = {} ;
         tmpObj[name] = value ;
         $.extend(check.global , tmpObj) ;
     } ,
@@ -213,7 +213,7 @@ var check = {
                     } ;
                     canvas.createError(errorObj) ;
                 }
-                else
+                else if(options.errorsOnly === false)
                 {
 
                     errorObj = {
@@ -275,7 +275,7 @@ var check = {
                     } ;
                     canvas.createError(errorObj) ;
                 }
-                else
+                else if(options.errorsOnly === false)
                 {
 
                     errorObj = {
@@ -284,10 +284,10 @@ var check = {
                         "width" : "100%" ,
                         "height" : "2px" ,
                         "key" : objGroup
-                    }
+                    } ;
                     canvas.createError(errorObj , "Green") ;
                 }
             }
         }
     }
-}
+};
