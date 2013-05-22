@@ -40,7 +40,7 @@ var options = {
      * Toggle for diplaying only errors or displaying all checks
      */
 
-    errorsOnly : false ,
+    errorsOnly : true ,
 
     /*
      * Setter for minOffsetLeft

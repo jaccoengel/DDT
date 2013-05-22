@@ -96,10 +96,31 @@ var canvas = {
                     indicator = indicator + 1 ;
             }
         }
-        
         errors = calculate.errors(errorType , nodeObject[key]) ;
-        
+        canvas.displayRelatedErrors(errors) ;
     } ,
+
+    /*
+     * display errors for selected error
+     */
+     
+     displayRelatedErrors : function(errors)
+     {
+        indicator = 2 ;
+        errorBox = $("<table></table>").appendTo($("#" + check.global.errorBox)).css({
+            "position" : "absolute" ,
+            "right" : "0px" ,
+            "bottom" : "0px"
+        }).attr({"id" : "errorTable"}) ; 
+        for(var error = 0 ; error < errors.length ; error++)
+        {
+            errorTr = $("<tr></tr>").appendTo(errorBox) ;
+            $("<td></td>").html(indicator).appendTo($(errorTr)) ;
+            $("<td></td>").html(":").appendTo($(errorTr)) ;
+            $("<td></td>").html(errors[error]).appendTo($(errorTr)) ;
+            indicator = indicator + 1 ;
+        }
+     } ,
 
     /*
      * Displays all the error on screen
@@ -111,7 +132,8 @@ var canvas = {
             .css({
                 display : ""
             }) ;
-        $(".relatedElement").remove()
+        $(".relatedElement").remove() ;
+        $("#errorTable").remove()
     } ,
 
     /*

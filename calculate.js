@@ -114,14 +114,24 @@ var calculate = {
     errors : function(errorType , nodeObject)
     {
         baseObject = nodeObject.shift() ;
-        console.clear()
-        console.log("left positions based on object 1") ;
+        errorArray = Array() ;
         for(var i = 0; i < nodeObject.length;i++)
         {
-            var indicator = i + 2 ;
-            console.log(indicator + " : " + ($(nodeObject[i]).offset().left - $(baseObject).offset().left) + "px") ;
-            
+            if(typeof(nodeObject[i]) !== "function")
+            {
+                if(errorType === "h")
+                {
+                    errorArray[errorArray.length] = $(nodeObject[i]).offset().top - $(baseObject).offset().top ;
+                }
+                else
+                {
+                    errorArray[errorArray.length] = $(nodeObject[i]).offset().left - $(baseObject).offset().left ;
+                }
+            }
         }
+        
+        return errorArray ;
+        
     }
 
 };
