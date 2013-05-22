@@ -64,28 +64,41 @@ var canvas = {
         key = key.split("_") ;
         errorType = key[0] ;
         key = key[1] ;
-
-        nodeObject = (errorType === "h") ?check.nodeObjectTop : check.nodeObjectLeft ;
+        indicator = 1 ;
+        nodeObject = (errorType === "h") ? check.nodeObjectTop : check.nodeObjectLeft ;
         for (obj in nodeObject[key])
         {
             if(typeof(nodeObject[key][obj]) !== "function")
             {
                 $("<div></div>")
-                    .appendTo($("#" + check.global.errorBox))
+                    .appendTo(
+                        $("<div></div>")
+                            .appendTo($("#" + check.global.errorBox))
+                            .css({
+                                position        : "absolute",
+                                left            : (calculate.left(nodeObject[key][obj])-3) + "px" ,
+                                top             : (calculate.top(nodeObject[key][obj])-3) + "px" ,
+                                width           : nodeObject[key][obj].offsetWidth + "px" ,
+                                height          : nodeObject[key][obj].offsetHeight + "px" ,
+                                backgroundColor : "#FFF" ,
+                                zIndex          : "7500" ,
+                                border          : "3px solid blue" ,
+                                opacity         : 0.45
+                            })
+                            .addClass("relatedElement")
+                    )
                     .css({
-                        position        : "absolute",
-                        left            : (calculate.left(nodeObject[key][obj])-3) + "px" ,
-                        top             : (calculate.top(nodeObject[key][obj])-3) + "px" ,
-                        width           : nodeObject[key][obj].offsetWidth + "px" ,
-                        height          : nodeObject[key][obj].offsetHeight + "px" ,
-                        backgroundColor : "#FFF" ,
-                        zIndex          : "7500" ,
-                        border          : "3px solid blue" ,
-                        opacity         : 0.45
+                        zIndex : "7500",
+                        opacity         : 2 ,
+                        backgroundColor : "#FFF"
                     })
-                    .addClass("relatedElement") ;
+                    .html(indicator);
+                    indicator = indicator + 1 ;
             }
         }
+        
+        errors = calculate.errors(errorType , nodeObject[key]) ;
+        
     } ,
 
     /*

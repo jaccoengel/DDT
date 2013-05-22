@@ -109,6 +109,19 @@ var calculate = {
         {
             
         }
+    },
+
+    errors : function(errorType , nodeObject)
+    {
+        baseObject = nodeObject.shift() ;
+        console.clear()
+        console.log("left positions based on object 1") ;
+        for(var i = 0; i < nodeObject.length;i++)
+        {
+            var indicator = i + 2 ;
+            console.log(indicator + " : " + ($(nodeObject[i]).offset().left - $(baseObject).offset().left) + "px") ;
+            
+        }
     }
 
-} ;
+};
