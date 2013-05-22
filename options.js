@@ -20,8 +20,8 @@ var options = {
      * This gives the option to exclude i.e. tracking pixels
      **/
     minDimentions       : {
-        width   : 10 ,
-        height  : 10
+        width   : 0 ,
+        height  : 0
     } ,
 
     /*

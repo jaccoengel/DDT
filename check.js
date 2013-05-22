@@ -41,11 +41,13 @@ var check = {
         {
             if(target.childNodes[i].nodeType !== 3)
             {
-                nodeList[nodeList.length] = target.childNodes[i] ;
-
-                if(target.childNodes[i].childNodes.length > 0)
+                if(typeof(target.childNodes[i]) !== undefined && calculate.meetsMinimumSize(target.childNodes[i]))
                 {
-                    this.getAllNodes(target.childNodes[i] , nodeList) ;
+                    nodeList[nodeList.length] = target.childNodes[i] ;
+                    if(target.childNodes[i].childNodes.length > 0)
+                    {
+                        this.getAllNodes(target.childNodes[i] , nodeList) ;
+                    }
                 }
             }
         }

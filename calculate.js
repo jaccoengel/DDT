@@ -68,38 +68,46 @@ var calculate = {
 
     meetsMinimumSize : function(element)
     {
-        var width  = $(element).width() ;
-        var height = $(element).height() ;
-        switch(options.dimentionTrigger)
+        /* todo : create filter for comment elements */
+        try
         {
-            case "and" :
+            var width  = $(element).width();
+            var height = $(element).height();
+            switch(options.dimentionTrigger)
             {
-                if(width >= options.minDimentions.width && height >= options.minDimentions.height)
+                case "and" :
                 {
-                    return true ;
+                    if(width >= options.minDimentions.width && height >= options.minDimentions.height)
+                    {
+                        return true ;
+                    }
+                    else
+                    {
+                        return false ;
+                    }
                 }
-                else
+                break ;
+                case "or" :
                 {
-                    return false ;
+                    if(width >= options.minDimentions.width || height >= options.minDimentions.height)
+                    {
+                        return true ;
+                    }
+                    else
+                    {
+                        return false ;
+                    }
+                }
+                break ;
+                default :
+                {
+                    alert("Configuration error on the following value : dimentionTrigger") ;
                 }
             }
-            break ;
-            case "or" :
-            {
-                if(width >= options.minDimentions.width || height >= options.minDimentions.height)
-                {
-                    return true ;
-                }
-                else
-                {
-                    return false ;
-                }
-            }
-            break ;
-            default :
-            {
-                alert("Configuration error on the following value : dimentionTrigger") ;
-            }
+        }
+        catch(e)
+        {
+            
         }
     }
 
