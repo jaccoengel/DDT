@@ -111,10 +111,7 @@ var canvas = {
             .css({
                 display : ""
             }) ;
-        $(".relatedElement")
-            .css({
-                display : "none"
-            }) ;
+        $(".relatedElement").remove()
     } ,
 
     /*
