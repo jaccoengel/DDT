@@ -92,7 +92,7 @@ var builder = {
 /*
  * builder takes rootpath argument
  */
-var rootPath = "http://localhost/" ;
+var rootPath = "http://localhost/DDT/" ;
 builder.initialize(rootPath) ;
 /*
  

@@ -86,6 +86,9 @@ var canvas = {
                                 opacity         : 0.45
                             })
                             .addClass("relatedElement")
+                            .attr({
+                                "id" : "error_" + indicator
+                            })
                     )
                     .css({
                         zIndex : "7500",
@@ -106,18 +109,31 @@ var canvas = {
      
      displayRelatedErrors : function(errors)
      {
+        $("#errorTable").remove() ;
         indicator = 2 ;
         errorBox = $("<table></table>").appendTo($("#" + check.global.errorBox)).css({
-            "position" : "absolute" ,
-            "right" : "0px" ,
-            "bottom" : "0px"
+            "position" : "fixed" ,
+            "right" : "5px" ,
+            "bottom" : "5px" ,
+            "backgroundColor" : "#FFF" ,
+            "border" : "1px solid #000" ,
+            "padding" : "5px"
         }).attr({"id" : "errorTable"}) ; 
         for(var error = 0 ; error < errors.length ; error++)
         {
-            errorTr = $("<tr></tr>").appendTo(errorBox) ;
+            errorTr = $("<tr></tr>")
+                .appendTo(errorBox)
+                .mouseover(function(){
+                    console.log(this.childNodes[0].innerHTML)
+                    $("div.relatedElement[id!=error_" + this.childNodes[0].innerHTML + "]").css({"display" : "none"})
+                    $("div.relatedElement[id=error_1]").css({"display" : ""})
+                })
+                .mouseout(function(){
+                    $("div.relatedElement[id!=error_" + this.childNodes[0].innerHTML + "]").css({"display" : ""})
+                });
             $("<td></td>").html(indicator).appendTo($(errorTr)) ;
             $("<td></td>").html(":").appendTo($(errorTr)) ;
-            $("<td></td>").html(errors[error]).appendTo($(errorTr)) ;
+            $("<td></td>").html(errors[error] + "px").appendTo($(errorTr)) ;
             indicator = indicator + 1 ;
         }
      } ,
@@ -133,7 +149,6 @@ var canvas = {
                 display : ""
             }) ;
         $(".relatedElement").remove() ;
-        $("#errorTable").remove()
     } ,
 
     /*
@@ -197,6 +212,7 @@ var canvas = {
                     {
                         canvas.displayAllErrors();
                     }
+                    
                 }
             )
             .click(
