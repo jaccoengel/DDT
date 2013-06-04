@@ -98,7 +98,6 @@ var builder = {
 
             if(typeof(scriptArr[script]) !== "function")
             {
-                console.log(scriptArr[script])
                 $.getScript(this.rootPath + scriptArr[script] + "?busted=" + p.getTime() ,
                     function()
                     {
@@ -114,7 +113,6 @@ var builder = {
                 clearInterval(loadInterval) ;
                 if(builder.unitTest === true)
                 {
-                    console.log("Ready to test");
                     builder.startUnitTest();
                 }
                 else
