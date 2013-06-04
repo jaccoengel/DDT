@@ -8,28 +8,45 @@ var builder = {
      **/
 
     rootPath : false ,
+    unitTest : false ,
 
-    initialize : function(rootPath)
+    initialize : function(rootPath , unitTesting)
     {
+        this.unitTest = unitTesting ;
         this.rootPath = rootPath ;
         p = new Date();
-        if($ === undefined && jQuery === undefined )
+        if(typeof($) === "undefined" && typeof(jQuery) === "undefined")
         {
             myJquery = document.createElement("script") ;
-            myJquery.src = "http://http://code.jquery.com/jquery-1.9.1.js?busted=" + p.getTime() ;
+            myJquery.src = "http://code.jquery.com/jquery-1.9.1.js?busted=" + p.getTime() ;
             myJquery.type = "text/javascript" ;
             document.getElementsByTagName("head")[0].appendChild(myJquery)
             myJquery.addEventListener("load", function(){
-                builder.loadScripts();
+                if(builder.unitTest === true)
+                {
+                    builder.initUnitTest() ;
+                }
+                else
+                {
+                    builder.initChecks();
+                }
             }, false) ;
         }
         else
         {
-            if(jQuery !== undefined)
+            if(typeof(jQuery) !== "undefined")
             {
                 $ = jQuery ;
             }
-            builder.loadScripts() ;
+            
+            if(builder.unitTest === true)
+            {
+                builder.initUnitTest() ;
+            }
+            else
+            {
+                builder.initChecks();
+            }
         }
     } ,
 
@@ -38,40 +55,74 @@ var builder = {
      * Initializes check after all the scripts have loaded
      **/
 
-    loadScripts : function()
+    initUnitTest : function()
     {
+            
+
+        $("<link/>", {
+            rel: "stylesheet",
+            type: "text/css",
+            href: "http://code.jquery.com/qunit/qunit-1.11.0.css"
+         }).appendTo("head");
+        
         var scriptArr = Array(
             "check.js" ,
             "options.js" ,
             "calculate.js" ,
             "prototyping.js" ,
-            "canvas.js"
+            "canvas.js",
+            "unittest/qunit.js" ,
+            "unittest/tests.js" 
         );
+        builder.loadScripts(scriptArr);
+    } ,
+            
+    initChecks : function()
+    {
+       var scriptArr = Array(
+            "check.js" ,
+            "options.js" ,
+            "calculate.js" ,
+            "prototyping.js" ,
+            "canvas.js"
+        ); 
+        builder.loadScripts(scriptArr) ;
+    } ,
 
-        var loadingScripts = 0 ;
-
+    loadScripts : function(scriptArr)
+    {
+        var loadingScripts = 0;
         for (script in scriptArr)
         {
             loadingScripts = loadingScripts + 1 ;
 
             if(typeof(scriptArr[script]) !== "function")
             {
+                console.log(scriptArr[script])
                 $.getScript(this.rootPath + scriptArr[script] + "?busted=" + p.getTime() ,
                     function()
                     {
                         loadingScripts = loadingScripts - 1 ;
                     }
-                )
+                );
             }
         }
-
+        
         loadInterval = setInterval(function(){
             if(loadingScripts === 0)
             {
                 clearInterval(loadInterval) ;
-                builder.startCheck() ;
+                if(builder.unitTest === true)
+                {
+                    console.log("Ready to test");
+                    builder.startUnitTest();
+                }
+                else
+                {
+                    builder.startCheck();
+                }
             }
-        } , 200)
+        } , 200) ;
     },
 
     /*
@@ -85,6 +136,11 @@ var builder = {
         options.setLeft() ;
         canvas.displayErrors() ;
         check.setup() ;
+    } ,
+            
+    startUnitTest : function()
+    {
+        myTests.run();
     }
 }
 
@@ -92,8 +148,9 @@ var builder = {
 /*
  * builder takes rootpath argument
  */
-var rootPath = "http://localhost/DDT/" ;
-builder.initialize(rootPath) ;
+var rootPath = "http://localhost/DDT/";
+var unitTesting = true;
+builder.initialize(rootPath , unitTesting) ;
 /*
  
  If ran locally below code needs to be executed through console

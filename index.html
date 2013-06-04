@@ -1,0 +1,21 @@
+<!--
+For now this file serves unit testing purposes only
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript">
+            p = new Date()
+            myCheck = document.createElement("script") ;
+            myCheck.src = "http://localhost/DDT/builder.js?busted=" + p.getTime() ;
+            myCheck.type = "text/javascript" ;
+            document.getElementsByTagName("head")[0].appendChild(myCheck)
+            
+        </script>
+    </head>
+    <body>
+        <div id="qunit"></div>
+    </body>
+</html>
