@@ -25,9 +25,9 @@ var myTests = {
         test("Group offsets" , function(){
             var testArray = Array( 1 , 2 , 50 , 51 , 101 , 102);
             var resultArray = Array(1 , 50 , 101);
-            deepEqual(calculate.getOffsetValues(testArray) , resultArray)
-            equal(calculate.isThere(103 , 4 , testArray) , 4)
-            equal(calculate.isThere(130 , 4 , testArray) , false)
+            deepEqual(calculate.getOffsetValues(testArray) , resultArray);
+            equal(calculate.isThere(103 , 4 , testArray) , 4);
+            equal(calculate.isThere(130 , 4 , testArray) , false);
         });
         
         test("Element requirements" , function(){
@@ -36,10 +36,19 @@ var myTests = {
             options.minDimentions.width = 1600;
             options.minDimentions.height = 2000;
             equal(calculate.meetsMinimumSize("#qunit") , false);
-            options.dimentionTrigger = "or"
+            options.dimentionTrigger = "or";
             equal(calculate.meetsMinimumSize("#qunit") , true);
         });
         
+        test("Element positioning" , function(){
+            var nodeObject = Array($("#qunit-header") , $("#qunit-testresult") , $("#qunit-tests"))
+            var expectedHresults = Array(55,99);
+            var expectedVresults = Array(0,0);
+            deepEqual(calculate.errors("h" , nodeObject) , expectedHresults) ;
+            nodeObject = Array($("#qunit-header") , $("#qunit-testresult") , $("#qunit-tests"));
+            deepEqual(calculate.errors("v" , nodeObject) , expectedVresults) ;
+        })
+        
     } 
     
-}
+};
