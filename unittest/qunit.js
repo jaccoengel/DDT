@@ -494,6 +494,23 @@ QUnit = {
 // We attach it to the QUnit object *after* we expose the public API,
 // otherwise `assert` will become a global variable in browsers (#341).
 assert = {
+    
+        /**
+         * Custom tools
+         */
+        bigger :  function(actual , expected , message){
+            var passes = (actual > expected);
+            QUnit.push(passes , actual , expected , message);
+        } ,
+
+        smaller :  function(actual , expected , message){
+            var passes = (actual < expected);
+            QUnit.push(passes , actual , expected , message);
+        } ,
+        /**
+         * Custom tools
+         */
+    
 	/**
 	 * Asserts rough true-ish result.
 	 * @name ok

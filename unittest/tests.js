@@ -2,15 +2,27 @@ var myTests = {
     
     setup : function()
     {
-        
-    } ,
-    
-    run : function()
-    {
         QUnit.reset();  // should clear the DOM
         QUnit.init();   // resets the qunit test environment
         QUnit.start();  // allows for the new test to be captured.
-        
+    } ,
+    
+    runOptionsTests : function(){
+
+        test("Configuration" , function(){
+            equal(isNaN(options.associationMargin),false);
+            equal(isNaN(options.minOffsetLeft),false);
+            equal(isNaN(options.minDimentions.width),false);
+            equal(isNaN(options.minDimentions.height),false);
+            bigger($.inArray(options.dimentionTrigger , Array("or" , "and")) , -1);
+            equal(typeof(options.removeableIds) , "object");
+            equal(typeof(options.errorsOnly) , "boolean");
+        });
+
+    } ,
+    
+    runCalculationTests : function()
+    {   
         test("Array prototyping" , function(){
             testArray = Array(1,2,3) ;
             equal(testArray.minimum() , 1) ;
@@ -47,8 +59,16 @@ var myTests = {
             deepEqual(calculate.errors("h" , nodeObject) , expectedHresults) ;
             nodeObject = Array($("#qunit-header") , $("#qunit-testresult") , $("#qunit-tests"));
             deepEqual(calculate.errors("v" , nodeObject) , expectedVresults) ;
-        })
+        });
         
-    } 
+    } ,
+    
+    runCheckTests : function(){
+        test("Setting globals" , function(){
+            var testValue = "testValue";
+            check.define("testGlobal" , testValue);
+            equal(check.global.testGlobal , testValue);
+        })
+    }
     
 };

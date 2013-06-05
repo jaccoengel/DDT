@@ -138,7 +138,10 @@ var builder = {
             
     startUnitTest : function()
     {
-        myTests.run();
+        myTests.setup();
+        myTests.runOptionsTests();
+        myTests.runCheckTests();
+        myTests.runCalculationTests();
     }
 }
 
