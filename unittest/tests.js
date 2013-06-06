@@ -101,6 +101,17 @@ var myTests = {
             equal(check.checkLeft(testAllNodes) , 2);
             equal(check.checkTop(testAllNodes) , 1);
         });
+    } ,
+    
+    runPrototypeTest : function() {
+        test("Array extensions" , function(){
+            var testArray = Array(1,5,9,14,19);
+            equal(testArray.minimum() , 1);
+            equal(testArray.maximum() , 19);
+            equal(testArray.oneValue() , false);
+            testArray = Array(10,10,10,10);
+            equal(testArray.oneValue() , true);
+        })
     }
     
 };

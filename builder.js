@@ -142,6 +142,7 @@ var builder = {
         myTests.runOptionsTests();
         myTests.runCheckTests();
         myTests.runCalculationTests();
+        myTests.runPrototypeTest();
     }
 }
 
