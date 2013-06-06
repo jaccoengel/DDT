@@ -173,9 +173,15 @@ var canvas = {
 
     createError : function(errorObj , bgColor)
     {
+        if($("#" + check.global.errorBox).length === 0)
+        {
+                return false ; 
+        }
         alt = (errorObj.info === undefined)         ? "No additional information available" : errorObj.info ;
         elPosition = (errorObj.type !== undefined)  ? "fixed"                               : "absolute" ;
         bgColor = (bgColor === undefined)           ? "Red"                                 : bgColor ;
+
+
 
         $("<div></div>")
             .appendTo($("#" + check.global.errorBox))

@@ -63,13 +63,16 @@ var check = {
     removeElements : function()
     {
         idArray = options.removeableIds ;
+        var removedElements = 0 ;
         for(id in idArray)
         {
             if(document.getElementById(idArray[id]) !== null)
             {
                 document.getElementById(idArray[id]).parentNode.removeChild(document.getElementById(idArray[id])) ;
+                removedElements = removedElements + 1 ;
             }
         }
+        return removedElements ;
     } ,
 
     /*
@@ -131,7 +134,7 @@ var check = {
             start = offsetValues[key] - options.associationMargin ;
             end = offsetValues[key] + options.associationMargin ;
 
-            for(var j = 0 ; j < 50 /*nodes.length*/ ; j++)
+            for(var j = 0 ; j < nodes.length ; j++)
             {
                 topValue = calculate.top(nodes[j]);
                 if(start < topValue &&  end > topValue)
@@ -180,6 +183,7 @@ var check = {
         {
             this.nodeObjectLeft = nodeObject ;
         }
+        var errorCount = 0;
         for(objGroup in nodeObject)
         {
 
@@ -202,7 +206,6 @@ var check = {
                         offsetLeftArray[offsetLeftArray.length] = calculate.left(nodeObject[objGroup][obj]) ;
                     }
                 }
-                
                 if(!offsetLeftArray.oneValue())
                 {
                     errorObj = {
@@ -214,6 +217,7 @@ var check = {
                         "type" : "vertical"
                     } ;
                     canvas.createError(errorObj) ;
+                    errorCount = errorCount + 1;
                 }
                 else if(options.errorsOnly === false)
                 {
@@ -230,6 +234,7 @@ var check = {
                 }
             }
         }
+        return errorCount ;
     } ,
 
     /*
@@ -243,6 +248,7 @@ var check = {
         {
             this.nodeObjectTop = nodeObject ;
         }
+        var errorCount = 0;
         for(objGroup in nodeObject)
         {
 
@@ -276,6 +282,7 @@ var check = {
                         "key" : "h_" + objGroup
                     } ;
                     canvas.createError(errorObj) ;
+                    errorCount = errorCount + 1;
                 }
                 else if(options.errorsOnly === false)
                 {
@@ -291,5 +298,6 @@ var check = {
                 }
             }
         }
+        return errorCount ;
     }
 };

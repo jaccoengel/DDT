@@ -65,10 +65,42 @@ var myTests = {
     
     runCheckTests : function(){
         test("Setting globals" , function(){
+            /* Test preperations */
             var testValue = "testValue";
             check.define("testGlobal" , testValue);
+            
+            /* Tests */
             equal(check.global.testGlobal , testValue);
-        })
+        });
+        
+        test("Preparing elements" , function(){
+            /* Test preperations */
+            options.removeableIds = Array("removableElement") ;
+            
+            /* Tests */
+            equal(check.removeElements() , 1);
+        });
+        
+        test("Checking fills" , function(){
+            /* Test preperations */
+            var testAllNodes = check.getAllNodes(document.getElementById("nodeCount"));
+            
+            /* Tests */
+            equal(testAllNodes.length , 9);
+            equal(check.fillLeftArray(testAllNodes).length , 3) ;
+            equal(check.fillLeftArray(testAllNodes)[0].length , 2) ;
+            equal(check.fillLeftArray(testAllNodes)[1].length , 2) ;
+            equal(check.fillLeftArray(testAllNodes)[2].length , 5) ;
+            equal(check.fillTopArray(testAllNodes).length , 2) ;
+            equal(check.fillTopArray(testAllNodes)[0].length , 1) ;
+            equal(check.fillTopArray(testAllNodes)[1].length , 8) ;
+        });
+        
+        test("Detecting design anomaly" , function(){
+            var testAllNodes = check.fillLeftArray(check.getAllNodes(document.getElementById("nodeCount")));
+            equal(check.checkLeft(testAllNodes) , 2);
+            equal(check.checkTop(testAllNodes) , 1);
+        });
     }
     
 };
