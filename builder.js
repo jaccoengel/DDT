@@ -143,8 +143,9 @@ var builder = {
         myTests.runCheckTests();
         myTests.runCalculationTests();
         myTests.runPrototypeTest();
+        myTests.runCanvasTest();
     }
-}
+};
 
 
 /*

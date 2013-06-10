@@ -111,7 +111,13 @@ var myTests = {
             equal(testArray.oneValue() , false);
             testArray = Array(10,10,10,10);
             equal(testArray.oneValue() , true);
-        })
+        });
+    } ,
+    
+    runCanvasTest : function(){
+        test("Canvas test" , function(){
+            equal(typeof(canvas) , "object");
+        });
     }
     
 };
