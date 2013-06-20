@@ -7,21 +7,19 @@ var builder = {
      * Then load the rest of the scripts
      **/
 
-    rootPath : false ,
-    unitTest : false ,
+    rootPath : false,
+    unitTest : false,
 
-    initialize : function(rootPath , unitTesting)
-    {
-        this.unitTest = unitTesting ;
-        this.rootPath = rootPath ;
-        p = new Date();
-        if(typeof($) === "undefined" && typeof(jQuery) === "undefined")
-        {
-            myJquery = document.createElement("script") ;
-            myJquery.src = "http://code.jquery.com/jquery-1.9.1.js?busted=" + p.getTime() ;
-            myJquery.type = "text/javascript" ;
-            document.getElementsByTagName("head")[0].appendChild(myJquery)
-            myJquery.addEventListener("load", function(){
+    initialize : function (rootPath, unitTesting) {
+        this.unitTest = unitTesting;
+        this.rootPath = rootPath;
+        var p = new Date();
+        if (typeof ($) === "undefined" && typeof (jQuery) === "undefined") {
+            var myJquery = document.createElement("script");
+            myJquery.src = "http://code.jquery.com/jquery-1.9.1.js?busted=" + p.getTime();
+            myJquery.type = "text/javascript";
+            document.getElementsByTagName("head")[0].appendChild(myJquery);
+            myJquery.addEventListener("load", function () {
                 if(builder.unitTest === true)
                 {
                     builder.initUnitTest() ;
