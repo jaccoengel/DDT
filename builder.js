@@ -20,61 +20,48 @@ var builder = {
             myJquery.type = "text/javascript";
             document.getElementsByTagName("head")[0].appendChild(myJquery);
             myJquery.addEventListener("load", function () {
-                if(builder.unitTest === true)
-                {
-                    builder.initUnitTest() ;
-                }
-                else
-                {
+                if (builder.unitTest === true) {
+                    builder.initUnitTest();
+                } else {
                     builder.initChecks();
                 }
-            }, false) ;
-        }
-        else
-        {
-            if(typeof(jQuery) !== "undefined")
-            {
-                $ = jQuery ;
+            }, false);
+        } else {
+            if (typeof (jQuery) !== "undefined") {
+                $ = jQuery;
             }
-            
-            if(builder.unitTest === true)
-            {
-                builder.initUnitTest() ;
-            }
-            else
-            {
+            if (builder.unitTest === true) {
+                builder.initUnitTest();
+            } else {
                 builder.initChecks();
             }
         }
-    } ,
+    },
 
     /*
      * Loads all the scripts required to check design (with the exception of jQuery)
      * Initializes check after all the scripts have loaded
      **/
 
-    initUnitTest : function()
-    {
-            
-
+    initUnitTest : function () {
         $("<link/>", {
             rel: "stylesheet",
             type: "text/css",
             href: "http://code.jquery.com/qunit/qunit-1.11.0.css"
-         }).appendTo("head");
-        
-        var scriptArr = Array(
-            "check.js" ,
-            "options.js" ,
-            "calculate.js" ,
-            "prototyping.js" ,
+        }).appendTo("head");
+
+        var scriptArr = new Array[
+            "check.js",
+            "options.js",
+            "calculate.js",
+            "prototyping.js",
             "canvas.js",
-            "unittest/qunit.js" ,
-            "unittest/tests.js" 
-        );
+            "unittest/qunit.js",
+            "unittest/tests.js"
+        ];
         builder.loadScripts(scriptArr);
-    } ,
-            
+    },
+
     initChecks : function()
     {
        var scriptArr = Array(
